@@ -16,7 +16,7 @@ func Worker(input chan SingleTarget, output chan Result) {
 			output <- Result{Target: target, Open: false}
 			continue
 		}
-		defer conn.Close()
+		conn.Close()
 
 		if err, ok := err.(*net.OpError); ok && err.Timeout() {
 			fmt.Printf("Timeout error: %s\n", err)
